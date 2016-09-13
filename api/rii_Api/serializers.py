@@ -11,7 +11,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
 class YearSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Year
-        fields = ('id', 'url', 'year', 'wins', 'losses', 'ties', 'yearSummary', 'managerId', 'coachId') #add image
+        fields = ('id', 'url', 'year', 'wins', 'losses', 'ties', 'yearSummary', 'managerId', 'coachId', 'image') #add image
 
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
