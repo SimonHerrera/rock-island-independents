@@ -17,7 +17,7 @@ class YearSerializer(serializers.HyperlinkedModelSerializer):
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Player
-        fields = ('id', 'url', 'season', 'nickName', 'firstName', 'lastName', 'legalName', 'position', 'height', 'weight', 'birthDate', 'birthCity', 'birthState', 'birthCountry', 'college', 'playerBio')
+        fields = ('id', 'url', 'season', 'nickName', 'firstName', 'lastName', 'legalName', 'position', 'height', 'weight', 'birthDate', 'birthCity', 'birthState', 'birthCountry', 'college', 'playerBio', 'image')
 
 class LocationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

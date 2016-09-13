@@ -1,7 +1,8 @@
 from django.db import models
-from django.utils import timezone
+from django.utils import timezone # do I need this?
 
-year = [(number, number) for number in range(1920, 1926)]
+
+year = [(number, number) for number in range(1919, 1926)]
 height = [(number, number) for number in range(48, 83)]
 result = [('W', 'W'), ('L', 'L'), ('T', 'T'),]
 
@@ -12,14 +13,16 @@ class Coach(models.Model):
     lastName = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.lastName
+        return '{0} {1}'.format(self.firstName, self.lastName)
 
 class Manager(models.Model):
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.lastName
+        # return self.lastName #only showed part of name, now shows all, is that legit?
+        return '{0} {1}'.format(self.firstName, self.lastName)
+
 class Opponent(models.Model): # This comes first because mentioned by Game (OpponentId)
     name = models.CharField(max_length=35) #why dont I need a default here?
 
@@ -27,22 +30,22 @@ class Opponent(models.Model): # This comes first because mentioned by Game (Oppo
         return self.name
 
 class Location(models.Model):
-    city = models.CharField(max_length=40)
-    state = models.CharField(max_length=20)
-    venueName = models.CharField(max_length=25)
+    city = models.CharField(default='Rock Island', max_length=40)
+    state = models.CharField(default='IL', max_length=2)
+    venueName = models.CharField(default='Douglas Park', max_length=50)
 
     def __str__(self):
         return self.venueName
 
 class Year(models.Model):
-    year = models.IntegerField(choices=year, default=1920)
+    year = models.IntegerField(choices=year, default=1919)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
     ties = models.IntegerField(default=0)
-    yearSummary = models.CharField(default='', max_length=1000)
+    yearSummary = models.TextField(default='', max_length=2000)
     managerId = models.ForeignKey(Manager, related_name='years', on_delete=models.SET_NULL, null=True)
     coachId = models.ForeignKey(Coach, related_name='years', on_delete=models.SET_NULL, null=True)
-    # image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+    image = models.ImageField(upload_to = 'year_images/', default = 'year_images/default_year_image.jpg')
 
     def __str__(self):
         return str(self.year)
@@ -50,23 +53,24 @@ class Year(models.Model):
 
 class Player(models.Model):
     season = models.ManyToManyField(Year) #by default this is a foreign key
-    nickName = models.CharField(max_length=25)
+    nickName = models.CharField(default='', max_length=25)
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=25)
     legalName = models.CharField(max_length=70)
     position = models.CharField(max_length=2)
     height = models.IntegerField(choices=height, default=48)
-    weight = models.IntegerField(default=3)
+    weight = models.IntegerField(default=170)
     birthDate = models.DateField(auto_now=False, auto_now_add=False) #need both of these?
-    birthCity = models.CharField(max_length=35)
-    birthState = models.CharField(max_length=2)
-    birthCountry = models.CharField(max_length=30)
-    college = models.CharField(max_length=45)
+    birthCity = models.CharField(default='', max_length=35)
+    birthState = models.CharField(default='', max_length=2)
+    birthCountry = models.CharField(default='USA', max_length=30)
+    college = models.CharField(default='None', max_length=45)
     playerBio = models.TextField(max_length=1000)
-    # image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+    image = models.ImageField(upload_to = 'player_images/', default = 'player_images/default_player_image.jpg')
+
 
     def __str__(self):
-        return self.position
+        return '{0} {1}'.format(self.firstName, self.lastName)
 
 class Game(models.Model):
     attendance = models.CharField(default='NA', max_length=5) # Could have as Integer and filter as NA on front OR as sting and 1,000 and NA
