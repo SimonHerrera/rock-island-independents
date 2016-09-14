@@ -1,5 +1,13 @@
 from rii_Api.models import Game, Year, Player, Location, Opponent, Coach, Manager
 from rest_framework import serializers
+from django.contrib.auth.models import User # added w createsuperuser
+
+
+#added - superuser
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'url', 'username', 'email', 'password')
 
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
