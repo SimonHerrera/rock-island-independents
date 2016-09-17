@@ -3,12 +3,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rii_Api.models import Game, Year, Player, Location, Opponent, Coach, Manager
-from rii_Api.serializers import UserSerializer, GameSerializer, YearSerializer, PlayerSerializer, LocationSerializer, OpponentSerializer, CoachSerializer, ManagerSerializer
+from rii_Api.serializers import GameSerializer, YearSerializer, PlayerSerializer, LocationSerializer, OpponentSerializer, CoachSerializer, ManagerSerializer
 from django.contrib.auth.models import User #added with createsuperuser
 
-class UserList(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+
 
 class GameList(viewsets.ModelViewSet):
     queryset = Game.objects.all()
