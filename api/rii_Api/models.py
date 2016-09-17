@@ -3,7 +3,7 @@ from django.utils import timezone # do I need this?
 
 
 year = [(number, number) for number in range(1919, 1926)]
-height = [(number, number) for number in range(48, 83)]
+height = [(number, number) for number in range(60, 83)]
 result = [('W', 'W'), ('L', 'L'), ('T', 'T'),]
 
 
@@ -58,16 +58,16 @@ class Player(models.Model):
     lastName = models.CharField(max_length=25)
     legalName = models.CharField(max_length=70)
     position = models.CharField(max_length=2)
-    height = models.IntegerField(choices=height, default=48)
+    height = models.IntegerField(choices=height, default=72)
     weight = models.IntegerField(default=170)
     birthDate = models.DateField(auto_now=False, auto_now_add=False) #need both of these?
     birthCity = models.CharField(default='', max_length=35)
     birthState = models.CharField(default='', max_length=2)
     birthCountry = models.CharField(default='USA', max_length=30)
     college = models.CharField(default='None', max_length=45)
-    playerBio = models.TextField(max_length=1000)
+    playerBio = models.TextField(default='There is no bio yet for this player.', max_length=2000)
     image = models.ImageField(upload_to = 'player_images/', default = 'player_images/default_player_image.jpg')
-
+    # imageInfo = models.CharField(default='', max_length=90)
 
     def __str__(self):
         return '{0} {1}'.format(self.firstName, self.lastName)

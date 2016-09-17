@@ -131,3 +131,9 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = "C:\\Users\\Simon Herrera\\workspace\\python\\rock-island-independents\\api"
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
