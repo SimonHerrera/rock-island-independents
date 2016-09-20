@@ -67,7 +67,7 @@ class Player(models.Model):
     college = models.CharField(default='None', max_length=45)
     playerBio = models.TextField(default='There is no bio yet for this player.', max_length=2000)
     image = models.ImageField(upload_to = 'player_images/', default = 'player_images/default_player_image.jpg')
-    # imageInfo = models.CharField(default='', max_length=90)
+    imageInfo = models.CharField(default='There is no image available of this player', max_length=90)
 
     def __str__(self):
         return '{0} {1}'.format(self.firstName, self.lastName)
