@@ -17,23 +17,30 @@ class OpponentSerializer(serializers.HyperlinkedModelSerializer):
         model = Opponent
         fields = ('id', 'url', 'name', 'games')
 
+class GameSerializer(serializers.HyperlinkedModelSerializer): #added again to get Opponent to show on Seasons
+    opponentId = OpponentSerializer()
+    class Meta:
+        model = Game
+        fields = ('id', 'url', 'attendance', 'week', 'result', 'rockIslandScore', 'opponentScore', 'rii1st', 'rii2nd', 'rii3rd', 'rii4th', 'opp1st', 'opp2nd', 'opp3rd', 'opp4th', 'gameSummary', 'yearId', 'opponentId', 'locationId', 'date')
+
+
 class CoachSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Coach
         fields = ('id', 'url', 'firstName', 'lastName')
 
 class YearSerializer(serializers.HyperlinkedModelSerializer):
-    # coachId = CoachSerializer()
+    coachId = CoachSerializer() #need to allow coach to show on yearView
     class Meta:
         model = Year
-        fields = ('id', 'url', 'year', 'wins', 'losses', 'ties', 'yearSummary', 'managerId', 'coachId', 'image') #add image
+        fields = ('id', 'url', 'year', 'wins', 'losses', 'ties', 'yearSummary', 'managerId', 'coachId', 'image')
 
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     # season = YearSerializer(many=True)
     class Meta:
         model = Player
-        fields = ('id', 'url', 'season', 'nickName', 'firstName', 'lastName', 'legalName', 'position', 'height', 'weight', 'birthDate', 'birthCity', 'birthState', 'birthCountry', 'college', 'playerBio', 'image')
+        fields = ('id', 'url', 'season', 'nickName', 'firstName', 'lastName', 'legalName', 'position', 'height', 'weight', 'birthDate', 'birthCity', 'birthState', 'birthCountry', 'college', 'playerBio', 'image', 'imageInfo')
 
 class LocationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
