@@ -86,7 +86,7 @@ class Game(models.Model):
     opp2nd = models.IntegerField(default=0)
     opp3rd = models.IntegerField(default=0)
     opp4th = models.IntegerField(default=0)
-    gameSummary = models.TextField(default='There is no Game summary yet for this game.', max_length=2000) #Use textfield on larger text
+    gameSummary = models.TextField(default='There is no summary yet for this game.', max_length=2000) #Use textfield on larger text
     opponentId = models.ForeignKey(Opponent, related_name='games', on_delete=models.SET_NULL, null=True)
     yearId = models.ForeignKey(Year, related_name='games', on_delete=models.SET_NULL, null=True) #maybe need to make foreign key
     locationId = models.ForeignKey(Location, related_name='games', on_delete=models.SET_NULL, null=True)

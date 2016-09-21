@@ -23,8 +23,8 @@ class LocationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'city', 'state', 'venueName', 'games')
 
 class GameSerializer(serializers.HyperlinkedModelSerializer): #added again to get Opponent to show on Seasons
-    opponentId = OpponentSerializer()
-    locationId = LocationSerializer() #try so can bring in location to game summary
+    opponentId = OpponentSerializer() #turn on!
+    locationId = LocationSerializer() #turn on! try so can bring in location to game summary
     class Meta:
         model = Game
         fields = ('id', 'url', 'attendance', 'week', 'result', 'rockIslandScore', 'opponentScore', 'rii1st', 'rii2nd', 'rii3rd', 'rii4th', 'opp1st', 'opp2nd', 'opp3rd', 'opp4th', 'gameSummary', 'yearId', 'opponentId', 'locationId', 'date')
