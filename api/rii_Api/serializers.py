@@ -12,13 +12,19 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'attendance', 'week', 'result', 'rockIslandScore', 'opponentScore', 'rii1st', 'rii2nd', 'rii3rd', 'rii4th', 'opp1st', 'opp2nd', 'opp3rd', 'opp4th', 'gameSummary', 'yearId', 'opponentId', 'locationId', 'date')
 
 class OpponentSerializer(serializers.HyperlinkedModelSerializer):
-    games = GameSerializer(many=True) # makes game an object on opponents # Wont let me add teams though
+    games = GameSerializer(many=True) # makes game an object on opponents # skip to edit or add teams
     class Meta:
         model = Opponent
         fields = ('id', 'url', 'name', 'games')
 
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Location
+        fields = ('id', 'url', 'city', 'state', 'venueName', 'games')
+
 class GameSerializer(serializers.HyperlinkedModelSerializer): #added again to get Opponent to show on Seasons
     opponentId = OpponentSerializer()
+    locationId = LocationSerializer() #try so can bring in location to game summary
     class Meta:
         model = Game
         fields = ('id', 'url', 'attendance', 'week', 'result', 'rockIslandScore', 'opponentScore', 'rii1st', 'rii2nd', 'rii3rd', 'rii4th', 'opp1st', 'opp2nd', 'opp3rd', 'opp4th', 'gameSummary', 'yearId', 'opponentId', 'locationId', 'date')
@@ -41,11 +47,6 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Player
         fields = ('id', 'url', 'season', 'nickName', 'firstName', 'lastName', 'legalName', 'position', 'height', 'weight', 'birthDate', 'birthCity', 'birthState', 'birthCountry', 'college', 'playerBio', 'image', 'imageInfo')
-
-class LocationSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Location
-        fields = ('id', 'url', 'city', 'state', 'venueName', 'games')
 
 
 class ManagerSerializer(serializers.HyperlinkedModelSerializer):
