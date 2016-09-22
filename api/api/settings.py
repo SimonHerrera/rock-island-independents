@@ -58,6 +58,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
     '127.0.0.1:8080',
+    '104.236.6.142:80'
     )
 
 ROOT_URLCONF = 'api.urls'
