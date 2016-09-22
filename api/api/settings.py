@@ -132,7 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # MEDIA_ROOT = "C:\\Users\\Simon Herrera\\workspace\\python\\rock-island-independents\\api"
-MEDIA_ROOT = "/home/sherrera/rock-island-independents/api"
+MEDIA_ROOT = "/home/sherrera/rock-island-independents/api/"
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
