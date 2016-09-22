@@ -36,7 +36,7 @@ class CoachSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'firstName', 'lastName')
 
 class YearSerializer(serializers.HyperlinkedModelSerializer):
-    coachId = CoachSerializer() #need to allow coach to show on yearView
+    coachId = CoachSerializer() # turn on!need to allow coach to show on yearView
     class Meta:
         model = Year
         fields = ('id', 'url', 'year', 'wins', 'losses', 'ties', 'yearSummary', 'managerId', 'coachId', 'image')
